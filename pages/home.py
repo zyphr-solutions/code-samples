@@ -20,7 +20,10 @@ permission = ["user", "admin"]
 def get_content():
     session_cookie = request.cookies.get("custom-auth-session")
     return html.Div(
-        children=[html.P(children=["Welcome ", html.B(session_cookie), "!"])]
+        children=[
+            html.P(children=["Welcome ", html.B(session_cookie), "!"]),
+            html.P(children=["See what pages, under the ", html.B("Apps"), " navbar dropdown, are available to you according to your group permission."])
+        ]
     )
 
 
