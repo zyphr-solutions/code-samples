@@ -95,8 +95,6 @@ def layout(args=None):
                 ],
                 color="light",
             ),
-            dbc.Alert(
-                dbc.ListGroup(creds, flush=True), dismissable=True, color="light"
-            ),
+            dbc.ListGroup(creds, className="mt-3"),
         ],
     )
