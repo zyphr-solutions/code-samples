@@ -51,7 +51,7 @@ def get_navbar():
                 dbc.Button("Logout", type="submit", color="primary"),
                 action=URL["logout"],
                 method="POST",
-                style={"padding-left": "1rem"}
+                style={"padding-left": "1rem"},
             ),
         ]
     else:

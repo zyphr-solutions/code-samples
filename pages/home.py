@@ -22,7 +22,13 @@ def get_content():
     return html.Div(
         children=[
             html.P(children=["Welcome ", html.B(session_cookie), "!"]),
-            html.P(children=["See what pages, under the ", html.B("Apps"), " navbar dropdown, are available to you according to your group permission."])
+            html.P(
+                children=[
+                    "See what pages, under the ",
+                    html.B("Apps"),
+                    " navbar dropdown, are available to you according to your group permission.",
+                ]
+            ),
         ]
     )
 
