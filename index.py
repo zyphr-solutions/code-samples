@@ -12,7 +12,7 @@ from dash.dependencies import Input, Output, State
 
 from flask import request
 
-from app import app
+from app import app, server
 from utils.components import Navbar
 from utils.constants import APP_TITLE, APP_LOGO, PATH, URL
 from utils.helper import get_pages
