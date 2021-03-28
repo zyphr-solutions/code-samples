@@ -1,0 +1,51 @@
+:root {
+    --light: #f8f9fa;
+    --dark: #343a40;
+    --primary: #78c2ad;
+    --secondary: #f3969a;
+    --green: #56cc9d;
+    --red: #ff7851;
+}
+
+#login-page, #app-page {
+    margin: 30px;
+}
+
+#app-page {
+    background-color: light;
+}
+
+#login-page, #register-page {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#login-page > div, #register-page > div {
+    margin: 20px 0;
+}
+
+#login-card, #register-card {
+    width: 400px;
+}
+
+#login-form, #register-form {
+    text-align: left;
+}
+
+#login-form label, #login-form button, #register-form label, #register-form button, #app-header button, #password-row a {
+    font-weight: 500;
+}
+
+#password-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 400px) {
+    #login-card, #register-card {
+        width: 100%;
+    }
+}
