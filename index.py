@@ -29,12 +29,29 @@ def get_navbar():
     """
     session_cookie = request.cookies.get("custom-auth-session")
     if session_cookie:
+        if USERS[session_cookie]["group"] == "admin":
+            dropdown_content = [
+                dbc.DropdownMenuItem(dbc.NavLink("App X", href="/apps/app_admin")),
+                dbc.DropdownMenuItem(dbc.NavLink("App Y", href="/apps/app_user")),
+            ]
+        else:
+            dropdown_content = [
+                dbc.DropdownMenuItem(dbc.NavLink("App Y", href="/apps/app_user")),
+            ]
         navbar_content = [
             dbc.NavItem(dbc.NavLink("Home", href=URL["home"])),
+            dbc.DropdownMenu(
+                label="Apps",
+                children=dropdown_content,
+                nav=True,
+                in_navbar=True,
+                color="primary",
+            ),
             html.Form(
                 dbc.Button("Logout", type="submit", color="primary"),
                 action=URL["logout"],
                 method="POST",
+                style={"padding-left": "1rem"}
             ),
         ]
     else:
