@@ -29,7 +29,7 @@ def init_app():
 
         server.register_blueprint(auth_blueprint)
 
-    return app, server
+    return app
 
 
-app, server = init_app()
+app = init_app()
