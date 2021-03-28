@@ -25,7 +25,7 @@ def layout(args=None):
             error_message = "Invalid username and password. Please try again."
             error_display = True
 
-    creds = [dbc.ListGroupItem("Example (username, password) pairs:", color="transparent")]
+    creds = [dbc.ListGroupItem("Example (username, password) pairs:")]
     for username in USERS:
         user_creds = username + ": " + USERS[username]["password"]
         creds.append(dbc.ListGroupItem(user_creds, color="transparent"))
