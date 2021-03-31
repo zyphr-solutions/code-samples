@@ -46,7 +46,13 @@ Initialize an encrypted dictionary of users by running:
 python init_data.py
 ```
 
-This script will get an unencrypted dictionary of users from [users_unencrypted.py](app/data/users_unencrypted.py), encrypt this dictionary, and overwrite [users.py](app/data/users.py) to contain this newly encrypted dictionary.
+This script will get an unencrypted dictionary of users from [users_unencrypted.py](data/users_unencrypted.py), encrypt the passwords in this dictionary, and overwrite [users.py](data/users.py) to contain this newly encrypted dictionary. 
+
+While this is only an example, in practice, it would be advisable to then remove [users_unencrypted.py](data/users_unencrypted.py):
+
+```bash
+rm data/users_unencrypted.py
+```
 
 Run the app:
 
