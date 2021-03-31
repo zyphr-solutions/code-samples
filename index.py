@@ -102,15 +102,15 @@ def display_page(url, args):
         elif url not in pages:
             url = URL["error"]
 
-    page = pages[url]
+    module = pages[url]
 
     navbar = get_navbar()
     layout_arg_spec = (
-        inspect.getargspec(page.layout).args
+        inspect.getargspec(module.layout).args
         if sys.version_info[0] < 3
-        else inspect.getfullargspec(page.layout).args
+        else inspect.getfullargspec(module.layout).args
     )
-    layout = page.layout(args) if "args" in layout_arg_spec else page.layout()
+    layout = module.layout(args) if "args" in layout_arg_spec else module.layout()
 
     print("URL O:", url, session_cookie)
     return [navbar, layout]
