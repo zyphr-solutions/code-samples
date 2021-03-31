@@ -8,15 +8,14 @@ import dash_html_components as html
 from utils.components import Header
 
 
-title = "Error 404"
-permission = ["user", "admin"]
-show_on_navbar = True
+TITLE = "Error 404"
+PERMISSION = ["user", "admin"]
 
 
 def layout():
     return dbc.Container(
         children=[
-            Header(title),
+            Header(TITLE),
             html.P("Page not found"),
         ],
         className="mt-5",

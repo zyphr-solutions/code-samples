@@ -10,8 +10,8 @@ from utils.components import Header
 from utils.constants import APP_TITLE, APP_LOGO, URL
 
 
-title = "Login"
-permission = ["anon"]
+TITLE = "Login"
+PERMISSION = ["anon"]
 
 
 def layout(args=None):

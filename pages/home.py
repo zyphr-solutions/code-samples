@@ -13,8 +13,8 @@ from app import app
 from utils.components import Header
 
 
-title = "Home"
-permission = ["user", "admin"]
+TITLE = "Home"
+PERMISSION = ["user", "admin"]
 
 
 def get_content():
@@ -34,4 +34,4 @@ def get_content():
 
 
 def layout():
-    return dbc.Container(children=[Header(title), get_content()], className="mt-5")
+    return dbc.Container(children=[Header(TITLE), get_content()], className="mt-5")

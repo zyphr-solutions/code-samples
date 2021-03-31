@@ -15,8 +15,8 @@ from data.users import USERS
 from utils.components import Header
 
 
-title = "App Y"
-permission = ["user", "admin"]
+TITLE = "App Y"
+PERMISSION = ["user", "admin"]
 
 
 def get_content():
@@ -35,7 +35,7 @@ def get_content():
             html.P(
                 children=[
                     "This page should only be viewable to users in groups = ",
-                    html.B(str(permission)),
+                    html.B(str(PERMISSION)),
                     ".",
                 ]
             ),
@@ -45,6 +45,6 @@ def get_content():
 
 def layout():
     return dbc.Container(
-        children=[Header(title), get_content()],
+        children=[Header(TITLE), get_content()],
         className="mt-5",
     )

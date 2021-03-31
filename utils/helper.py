@@ -32,7 +32,7 @@ def get_pages(directory, group=None):
             module_path = path.replace("/", ".")
             module = __import__(module_path, fromlist=[None])
             if group:
-                if group in module.permission:
+                if group in module.PERMISSION:
                     pages[url_path] = module
             else:
                 pages[url_path] = module
