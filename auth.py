@@ -22,7 +22,6 @@ def route_login():
         if username in USERS.keys() and bcrypt.check_password_hash(
             USERS[username]["password"], password
         ):
-            print("LOGIN:", username)
             rep = redirect(URL["home"])
             rep.set_cookie("custom-auth-session", username)
         else:
