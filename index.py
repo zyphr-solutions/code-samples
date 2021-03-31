@@ -92,17 +92,17 @@ def display_page(url, args):
     print("URL I:", url, session_cookie)
 
     if not session_cookie:
-        PAGES = get_pages(PATH["pages"], "anon")
-        if url not in PAGES:
+        pages = get_pages(PATH["pages"], "anon")
+        if url not in pages:
             url = URL["login"]
     else:
-        PAGES = get_pages(PATH["pages"], USERS[session_cookie]["group"])
+        pages = get_pages(PATH["pages"], USERS[session_cookie]["group"])
         if url == "/":
             url = URL["home"]
-        elif url not in PAGES:
+        elif url not in pages:
             url = URL["error"]
 
-    page = PAGES[url]
+    page = pages[url]
 
     navbar = get_navbar()
     layout_arg_spec = (
