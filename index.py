@@ -89,8 +89,6 @@ def display_page(url, args):
 
     session_cookie = request.cookies.get("custom-auth-session")
 
-    print("URL I:", url, session_cookie)
-
     if not session_cookie:
         pages = get_pages(PATH["pages"], "anon")
         if url not in pages:
@@ -112,7 +110,6 @@ def display_page(url, args):
     )
     layout = module.layout(args) if "args" in layout_arg_spec else module.layout()
 
-    print("URL O:", url, session_cookie)
     return [navbar, layout]
 
 

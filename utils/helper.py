@@ -36,6 +36,4 @@ def get_pages(directory, group=None):
                     pages[url_path] = module
             else:
                 pages[url_path] = module
-    for page in pages:
-        print(page)
     return pages
