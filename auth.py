@@ -5,8 +5,8 @@ Configure Flask Blueprint for user authentication.
 from flask import Blueprint, request, redirect
 
 from app import bcrypt
-from utils.constants import URL
 from data.users import USERS
+from utils.constants import URL
 
 auth_blueprint = Blueprint("auth_blueprint", __name__)
 

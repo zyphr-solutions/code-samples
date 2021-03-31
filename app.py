@@ -3,7 +3,6 @@ Configure Dash app and Flask server. Define plugins and bind to Flask server.
 """
 
 import dash
-
 from flask_bcrypt import Bcrypt
 
 from utils.constants import APP_CSS
