@@ -11,7 +11,7 @@ import dash_html_components as html
 from dash.dependencies import Input, Output, State
 from flask import request
 
-from app import app
+from app import app, server
 from data.users import USERS
 from utils.components import Navbar
 from utils.constants import APP_TITLE, APP_LOGO, PATH, URL
@@ -117,5 +117,4 @@ def display_page(url, args):
 
 
 if __name__ == "__main__":
-    server = app.server
     app.run_server(debug=True)
