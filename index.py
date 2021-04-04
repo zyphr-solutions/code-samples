@@ -67,7 +67,7 @@ app.layout = html.Div(
     Output("page-content", "children"),
     [Input("url", "pathname"), Input("url", "search")],
 )
-def display_page(url, args):
+def display_page(url_path, url_args):
     """
     Define layout and redirect url according to input url and user authentication.
 
@@ -91,16 +91,16 @@ def display_page(url, args):
 
     if not session_cookie:
         pages = get_pages(PATH["pages"], "anon")
-        if url not in pages:
-            url = URL["login"]
+        if url_path not in pages:
+            url_path = URL["login"]
     else:
         pages = get_pages(PATH["pages"], USERS[session_cookie]["group"])
-        if url == "/":
-            url = URL["home"]
-        elif url not in pages:
-            url = URL["error"]
+        if url_path == "/":
+            url_path = URL["home"]
+        elif url_path not in pages:
+            url_path = URL["error"]
 
-    module = pages[url]
+    module = pages[url_path]
 
     navbar = get_navbar()
     layout_arg_spec = (
@@ -108,7 +108,7 @@ def display_page(url, args):
         if sys.version_info[0] < 3
         else inspect.getfullargspec(module.layout).args
     )
-    layout = module.layout(args) if "args" in layout_arg_spec else module.layout()
+    layout = module.layout(url_args) if "args" in layout_arg_spec else module.layout()
 
     return [navbar, layout]
 

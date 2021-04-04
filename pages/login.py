@@ -14,14 +14,14 @@ TITLE = "Login"
 PERMISSION = ["anon"]
 
 
-def layout(args=None):
+def layout(url_args=None):
     error_message = ""
     error_display = False
-    if args:
-        if "error=incomplete" in args:
+    if url_args:
+        if "error=incomplete" in url_args:
             error_message = "Please complete the form."
             error_display = True
-        elif "error=invalid" in args:
+        elif "error=invalid" in url_args:
             error_message = "Invalid username and password. Please try again."
             error_display = True
 
