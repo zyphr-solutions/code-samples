@@ -65,6 +65,5 @@ View in your browser at http://127.0.0.1:8050.
 ## Resources
 
 * [Dash documentation](https://dash.plotly.com/)
-* [Plotly documentation](https://plotly.com/python/)
 * [Flask documentation](https://flask.palletsprojects.com/en/1.1.x/)
 * [Flask-Login documentation](https://flask-login.readthedocs.io/en/latest/)
