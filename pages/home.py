@@ -32,5 +32,5 @@ def get_content():
     )
 
 
-def layout():
+def layout(url_args=None):
     return dbc.Container(children=[Header(TITLE), get_content()], className="mt-5")

@@ -12,7 +12,7 @@ TITLE = "Error 404"
 PERMISSION = ["user", "admin"]
 
 
-def layout():
+def layout(url_args=None):
     return dbc.Container(
         children=[
             Header(TITLE),

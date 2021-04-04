@@ -103,12 +103,8 @@ def display_page(url_path, url_args):
     module = pages[url_path]
 
     navbar = get_navbar()
-    layout_arg_spec = (
-        inspect.getargspec(module.layout).args
-        if sys.version_info[0] < 3
-        else inspect.getfullargspec(module.layout).args
-    )
-    layout = module.layout(url_args) if "args" in layout_arg_spec else module.layout()
+
+    layout = module.layout(url_args=url_args)
 
     return [navbar, layout]
 
