@@ -45,6 +45,8 @@ def init_data():
         with open(output_path, "w") as file:
             file.write("USERS = ")
             json.dump(users, file)
+    else:
+        raise Exception(f"File \"{input_path}\" is undefined.")
 
 
 if __name__ == "__main__":
