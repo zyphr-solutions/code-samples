@@ -26,10 +26,26 @@ def generate_df(days):
     return df
 
 
-def generate_bar(df, fix=False):
+def generate_bar(df, fix=None):
     fig = px.bar(df, x="date", y="count")
 
-    if fix:
+    if fix == 0:
+        fig.update_xaxes(fixedrange=True)
+
+    if fix == 1.1:
+        fig.update_xaxes(tickformat="%b %d\n%Y")
+
+    if fix == 1.2:
+        fig.update_xaxes(
+            tickformatstops=[
+                dict(dtickrange=[None, 86400000], value="%b %d\n%Y"),
+            ]
+        )
+
+    if fix == 2:
+        fig.update_xaxes(dtick=86400000)
+
+    if fix == 3:
         # compute number of days in date range of date column
         max_date = pd.to_datetime(df["date"]).max()
         min_date = pd.to_datetime(df["date"]).min()
@@ -37,32 +53,36 @@ def generate_bar(df, fix=False):
 
         # update x-axis format if number of days within specified limit
         if num_days < MAX_DAYS_WITH_DTICK_FORMAT:
-            fig.update_xaxes(dtick=86400000.0, type="date")
+            fig.update_xaxes(dtick=86400000.0)
 
-    fig.update_xaxes(
-        tickformatstops=[
-            dict(dtickrange=[None, 86400000], value="%b %d"),
-            dict(dtickrange=[86400000, "M1"], value="%b %d"),
-            dict(dtickrange=["M1", "M12"], value="%b %Y"),
-            dict(dtickrange=["M12", None], value="%Y"),
-        ]
-    )
+        fig.update_xaxes(
+            tickformatstops=[
+                dict(dtickrange=[None, 86400000], value="%b %d\n%Y"),
+            ]
+        )
 
-    fig.update_layout(autosize=False, width=1000)
+    # fig.update_layout(autosize=False, width=1000)
 
     return fig
 
 
 app.layout = html.Div(
-    [
-        dcc.Graph(figure=generate_bar(df=generate_df(days=days), fix=fix))
-        for days, fix in [
-            (5, False), 
-            (5, True),
-            (100, False),
-            (100, True)
-        ]
-    ]
+    children=[
+        html.Div(
+            children=[
+                html.Div(
+                    children=[
+                        html.H3(f"days = {days}, fix = {fix}"),
+                        dcc.Graph(figure=generate_bar(df=generate_df(days=days), fix=fix))
+                    ],
+                    style={"width": "49%", "display": "inline-block"}
+                )
+                for days in [3, 100]
+            ],
+            # style={"border-bottom": "2px black solid"}
+        )
+        for fix in [None, 1.1, 1.2, 2, 3]
+    ] 
 )
 
 if __name__ == "__main__":
