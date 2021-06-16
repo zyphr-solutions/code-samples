@@ -1,12 +1,12 @@
 # Plotly Date Axis Formatting
 
-Plotly makes [plotting time series data](https://plotly.com/python/time-series/) quite simple and even fun. You can choose between different chart types, adjust the date axis range via range selector buttons or range sliders, or tweak the formatting further in the code. Nonetheless, you may find yourself stuck while accommodating for your exact preferences.
+Creating time series graphs with Plotly can be simple and fun! Choose between different chart types, adjust the date axis range via range sliders, or tweak the formatting further in the code. Nevertheless, you may find yourself stuck while accommodating for your exact preferences.
 
 In this article, we will outline how a default date axis property may be undesirable in some contexts and how to work around it.
 
 ## Default Date Axis Property
 
-When you make a chart with dates, the x-axis automatically adapts its tick labels to fit the spacing of the graph. This can also occur every time you zoom in/out of the graph. We see such adjustments for the charts below, where the dates in the provided data include year, month, day but no time (e.g. `"2020-01-01"` or `datetime.date(2020, 1, 1)`). 
+When you make a chart with dates, the x-axis automatically adapts its tick labels to fit the spacing of the graph. This can also occur every time you zoom in/out of the graph. We see such adjustments for the charts below, where the dates in the provided data include year, month, day but no time (e.g. `"2020-01-01"` or `datetime.date(2020, 1, 1)`).
 
 ![](assets/default_days_3.png)
 ![](assets/default_days_100.png)
