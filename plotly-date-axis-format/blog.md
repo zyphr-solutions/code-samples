@@ -86,7 +86,7 @@ If you never have too many days along the date axis, this may still be a viable 
 
 ### 3. Change tick interval if date range within a specified number of days
 
-By computing the number of days in the dataframe and acknowledging a maximum number of days to have the tick interval format as a constant, you can determine whether to set `dtick` as follows:
+By computing the number of days in the dataframe and acknowledging a maximum number of days to apply the tick interval format, you can determine whether to set `dtick` as follows:
 
 ```python
 MAX_DAYS_WITH_DTICK_FORMAT = 10 # you can change this!
@@ -119,7 +119,7 @@ Problems:
 
 ## Conclusion
 
-The solution you choose will depend on your context. You may never encounter a limited date range such that time would make an appearance in the date axis unless you zoom in. You may or may not desire the zoom feature. The width of your chart, and thus the  may vary between screen devices. 
+The solution you choose will depend on your context. You may never encounter a limited date range such that time would make an appearance in the date axis unless you zoom in. You may or may not desire the zoom feature. The width of your chart, and thus the may vary between screen devices. 
 
 Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. However, `dtick` is currently not a valid property. 
 
