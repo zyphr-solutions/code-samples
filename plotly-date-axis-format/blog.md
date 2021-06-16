@@ -26,7 +26,7 @@ When you make a chart with dates, the x-axis automatically adapts its tick label
 
 While this default feature is generally useful, it may not always be desirable! Notice when there are a small number of days (e.g. 3 days) along the date axis, the time also appears with the date. If the data is meant to be representative of the date and not time, but the chart implies otherwise, this can confuse the viewer.
 
-## What Are Our Options?
+## Let's Build Up to the Best Solution
 
 You may be able to patch together a workaround from Plotly's [time series tutorial](https://plotly.com/python/time-series/), [figure reference for `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/), and/or some more Googling. For this particular case, we've noticed that almost any fix that comes to mind has its shortcomings, and so, it is worth discussing.
 
