@@ -121,15 +121,15 @@ Problems:
 
 The solution you choose will depend on your context. You may never encounter a limited date range such that time would make an appearance in the date axis unless you zoom in. You may or may not desire the zoom feature. The width of your chart, and thus the may vary between screen devices. 
 
-Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. However, `dtick` is currently not defined as a valid property by Plotly.
+Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. However, Plotly currently does not have `dtick` defined as a valid property in this context.
 
 ```python
 # WARNING: this code snippet will not work!
-fig.update_xaxes(
-    tickformatstops=[
-        dict(dtickrange=[None, 86400000], dtick=86400000)
-    ]
-)
+# fig.update_xaxes(
+#     tickformatstops=[
+#         dict(dtickrange=[None, 86400000], dtick=86400000)
+#     ]
+# )
 ```
 
 It is our hope that Plotly adds this feature one day. In the meantime, we hope these workarounds can be of service!
