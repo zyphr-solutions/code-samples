@@ -28,7 +28,7 @@ While this default feature is generally useful, it may not always be desirable! 
 
 ## What Are Our Options?
 
-You may be able to patch together a workaround from Plotly's [time series tutorial](https://plotly.com/python/time-series/), [figure reference for `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/), and/or some more Googling. For this particular case, we've noticed that almost any fix that comes to mind has its loopholes, and so, it is worth discussing.
+You may be able to patch together a workaround from Plotly's [time series tutorial](https://plotly.com/python/time-series/), [figure reference for `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/), and/or some more Googling. For this particular case, we've noticed that almost any fix that comes to mind has its shortcomings, and so, it is worth discussing.
 
 ### 0. Disable zoom in mode bar
 
@@ -74,7 +74,7 @@ So why don't we simply change the tick interval to be one day (86400000 ms) via 
 fig.update_xaxes(dtick=86400000)
 ```
 
-This works well whwn the date range spans a smaller number of days:
+This works well when the date range spans a smaller number of days:
 
 ![](assets/dtick_days_3.png)
 
@@ -117,7 +117,7 @@ Problems:
 
 -->
 
-### Conclusion
+## Conclusion
 
 The solution you choose will depend on your context. You may never encounter a limited date range such that time would make an appearance in the date axis unless you zoom in. You may or may not desire the zoom feature. The width of your chart, and thus the  may vary between screen devices. 
 
