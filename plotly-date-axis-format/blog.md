@@ -24,7 +24,7 @@ When you make a chart with dates, the x-axis automatically adapts its tick label
 </p> 
 -->
 
-While this default feature is generally useful, it may not always be desirable! Notice when there are a low number of days (e.g. 3 days) along the date axis, the time also appears with the date. If the data is meant to be representative of the date and not time, but the chart implies otherwise, this can confuse the viewer.
+While this default feature is generally useful, it may not always be desirable! Notice when there are a small number of days (e.g. 3 days) along the date axis, the time also appears with the date. If the data is meant to be representative of the date and not time, but the chart implies otherwise, this can confuse the viewer.
 
 ## What Are Our Options?
 
