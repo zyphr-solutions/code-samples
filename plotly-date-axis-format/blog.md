@@ -30,7 +30,7 @@ While this default feature is generally useful, it may not always be desirable! 
 
 You may be able to patch together a workaround from Plotly's [time series tutorial](https://plotly.com/python/time-series/), [figure reference for `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/), and/or some more Googling. For this particular case, we've noticed that almost any fix that comes to mind has its shortcomings, and so, it is worth discussing.
 
-### 0. Disable zoom in mode bar
+### 1. Disable zoom in mode bar
 
 Your date range may never be so small such that time makes an appearance in the date axis. In either case, recall that zooming into the chart also has the same effect. 
 
@@ -42,7 +42,7 @@ fig.update_xaxes(fixedrange=True)
 
 Of course, this still does not resolve when the date range is in fact small. So let us proceed!
 
-### 1. Change tick label format
+### 2. Change tick label format
 
 We can set the tick label format to show only day, month, and year (and thus no time) via the `tickformat` property:
 
@@ -66,7 +66,7 @@ Since we only change the tick label and not the tick interval, this fix simply r
 
 ![](assets/tickformatstops_days_3.png)
 
-### 2. Change tick interval
+### 3. Change tick interval
 
 So why don't we simply change the tick interval to be one day (86400000 ms) via the `dtick` property? 
 
@@ -84,7 +84,7 @@ However, when the date range spans a large number of days (e.g. 100 days), the x
 
 If you never have too many days along the date axis, this may still be a viable option for you. Otherwise, the next solution attempts to resolve this. 
 
-### 3. Change tick interval if date range within a specified number of days
+### 4. Change tick interval if date range within a specified number of days
 
 By computing the number of days in the dataframe and acknowledging a maximum number of days to apply the tick interval format, you can determine whether to set `dtick` as follows:
 
