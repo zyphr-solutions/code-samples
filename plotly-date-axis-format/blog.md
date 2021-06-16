@@ -82,7 +82,7 @@ However, when the date range spans a large number of days (e.g. 100 days), the x
 
 ![](assets/dtick_days_100.png)
 
-However, if you never have too many days along the date axis, this may still be a viable option for you. Otherwise, the next solution attempts to resolve this. 
+If you never have too many days along the date axis, this may still be a viable option for you. Otherwise, the next solution attempts to resolve this. 
 
 ### 3. Change tick interval if date range within a specified number of days
 
