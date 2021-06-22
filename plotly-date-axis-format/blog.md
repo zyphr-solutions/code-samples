@@ -94,14 +94,16 @@ if num_days < MAX_DAYS_WITH_DTICK_FORMAT:
 
 While this little hack does wonders, it is important to realize that since graph widths may vary for different screen widths, you may need to experiment to find the ideal value for `MAX_DAYS_WITH_DTICK_FORMAT`. If all goes well, we have a clean date axis with no timestamps!
 
-![](assets/dtick_with_constant_days_3.png)
-![](assets/dtick_with_constant_days_100.png)
+<p float="center">
+  <img src="assets/dtick_with_constant_days_3.png" width="49.5%" />
+  <img src="assets/dtick_with_constant_days_100.png" width="49.5%" /> 
+</p>
 
 ## Conclusion
 
-The solution you choose will depend on your context. You may never encounter a limited date range such that time would make an appearance in the date axis unless you zoom in. You may or may not desire the zoom feature. The width of your chart, and thus the may vary between screen devices. 
+The solution you choose will depend on your context. You may never encounter a limited date range such that time would make an appearance in the date axis unless you zoom in. You may or may not desire the zoom feature. The width of your chart, and thus the date axis behaviour may vary between screen devices. 
 
-Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. However, Plotly currently does not have `dtick` defined as a valid property in this context.
+Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. However, Plotly currently does not have `dtick` defined as a valid property in the context of `tickformatstops`. 
 
 ```python
 # WARNING: this code snippet will not work!
@@ -113,3 +115,7 @@ Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange
 ```
 
 It is our hope that Plotly adds this feature one day. In the meantime, we hope these workarounds can be of service!
+
+---
+
+Feel free to experiment with our sample code here: https://github.com/zyphr-solutions/code-samples/tree/main/plotly-date-axis-format.
