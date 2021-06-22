@@ -53,9 +53,12 @@ fig.update_xaxes(
 )
 ```
 
-Since we only change the tick label and not the tick interval, this fix simply replaces time-specific tick labels with just dates. Unfortunately, this leaves us with repeating dates: 
+Since we only change the tick label and not the tick interval, this fix simply replaces time-specific tick labels with just dates. Unfortunately, this leaves us with repeating dates when the date range is small: 
 
-![](assets/tickformatstops_days_3.png)
+<p float="center">
+  <img src="assets/tickformatstops_days_3.png" width="49.5%" />
+  <img src="assets/tickformatstops_days_100.png" width="49.5%" /> 
+</p>
 
 ### 3. Change tick interval
 
@@ -65,15 +68,14 @@ So why don't we simply change the tick interval to be one day (86400000 ms) via 
 fig.update_xaxes(dtick=86400000)
 ```
 
-This works well when the date range spans a smaller number of days:
+This works well when the date range spans a smaller number of days (e.g. 3 days), but when the date range gets larger (e.g. 100 days), the x-axis can get crowded:
 
-![](assets/dtick_days_3.png)
+<p float="center">
+  <img src="assets/dtick_days_3.png" width="49.5%" />
+  <img src="assets/dtick_days_100.png" width="49.5%" /> 
+</p>
 
-However, when the date range spans a large number of days (e.g. 100 days), the x-axis can get crowded: 
-
-![](assets/dtick_days_100.png)
-
-If you never have too many days along the date axis, this may still be a viable option for you. Otherwise, the next solution attempts to resolve this. 
+If you never have too many days along the date axis, this is definitely a viable option! Otherwise, the next solution attempts to resolve this. 
 
 ### 4. Change tick interval if date range within a specified number of days
 
