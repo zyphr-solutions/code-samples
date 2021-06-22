@@ -23,15 +23,17 @@ You may be able to patch together a workaround from Plotly's [time series tutori
 
 ### 1. Disable zoom in mode bar
 
-Your date range may never be so small such that time makes an appearance in the date axis. In either case, recall that zooming into the chart also has the same effect. 
+Your starting date range may never be so small such that time makes an appearance in the date axis. Even so, recall that zooming into the chart also has the same effect.
 
-Thus, if the zoom feature is of less importance to you, you can opt to disable zoom along the x-axis via the `fixedrange` property:
+You can opt to disable zoom along the x-axis via the `fixedrange` property:
 
 ```python
 fig.update_xaxes(fixedrange=True)
 ```
 
-Of course, this still does not resolve when the date range is in fact small. So let us proceed!
+This is viable option if the zoom feature is of less importance to you, and if your _starting_ date range is always large enough such that time never appears in the date axis.
+
+Of course, this still does not resolve when the starting date range is in fact small. So let us proceed!
 
 ### 2. Change tick label format
 
