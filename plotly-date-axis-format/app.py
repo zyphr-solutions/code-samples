@@ -34,23 +34,23 @@ def generate_df(days):
 def generate_bar(df, fix=None):
     fig = px.line(df, x="date", y="count")
 
-    if fix == 0:
+    if fix == 1:
         fig.update_xaxes(fixedrange=True)
 
-    if fix == 1.1:
+    if fix == 2.1:
         fig.update_xaxes(tickformat="%b %d\n%Y")
 
-    if fix == 1.2:
+    if fix == 2.2:
         fig.update_xaxes(
             tickformatstops=[
                 dict(dtickrange=[None, 86400000], value="%b %d\n%Y"),
             ]
         )
 
-    if fix == 2:
+    if fix == 3:
         fig.update_xaxes(dtick=86400000)
 
-    if fix == 3:
+    if fix == 4:
         # compute number of days in date range of date column
         max_date = pd.to_datetime(df["date"]).max()
         min_date = pd.to_datetime(df["date"]).min()
