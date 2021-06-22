@@ -1,4 +1,5 @@
 from datetime import timedelta
+import random
 
 import dash
 import dash_core_components as dcc
@@ -14,10 +15,14 @@ MAX_DAYS_WITH_DTICK_FORMAT = 99
 
 
 def generate_df(days):
+    random.seed(days)
     min_date = pd.to_datetime("2020-01-01")
     df = pd.DataFrame(
         [
-            {"date": str((min_date + timedelta(days=i)).date()), "count": i}
+            {
+                "date": str((min_date + timedelta(days=i)).date()), 
+                "count": random.randint(0, 100),
+            }
             for i in range(days)
         ]
     )
@@ -27,7 +32,7 @@ def generate_df(days):
 
 
 def generate_bar(df, fix=None):
-    fig = px.bar(df, x="date", y="count")
+    fig = px.line(df, x="date", y="count")
 
     if fix == 0:
         fig.update_xaxes(fixedrange=True)
