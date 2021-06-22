@@ -2,14 +2,21 @@
 
 Creating time series graphs with Plotly can be simple and fun! You can choose between different chart types, adjust the date axis range via range sliders, or tweak the formatting further in the code. Nevertheless, you may find yourself stuck while accommodating for your exact preferences.
 
-In this article, we will outline how a default date axis property may be undesirable in some contexts and how to work around it.
+In this article, we will outline how the default behaviour for date axis ticks labels may be undesirable in some contexts and how to work around it.
 
-## Default Date Axis Property
+## Default for Tick Labels on a Date Axis
 
-When you make a chart with dates, the x-axis automatically adapts its tick labels to fit the spacing of the graph. This can also occur every time you zoom in/out of the graph. We see such adjustments for the charts below, where the dates in the provided data include year, month, day but no time (e.g. `"2020-01-01"` or `datetime.date(2020, 1, 1)`).
+When you make a chart with dates, the x-axis automatically adapts its tick labels to fit the spacing of the graph. This also occurs every time you zoom in/out of the graph. We see such adjustments for the charts below:
 
+<p float="center">
+  <img src="assets/default_days_3.png" width="49.5%" />
+  <img src="assets/default_days_100.png" width="49.5%" /> 
+</p> 
+
+<!-- 
 ![](assets/default_days_3.png)
-![](assets/default_days_100.png)
+![](assets/default_days_100.png) 
+-->
 
 <!-- 
 3 days | 100 days
@@ -24,9 +31,11 @@ When you make a chart with dates, the x-axis automatically adapts its tick label
 </p> 
 -->
 
-While this default feature is generally useful, it may not always be desirable! Notice when there are a small number of days (e.g. 3 days) along the date axis, the time also appears with the date. If the data is meant to be representative of the date and not time, but the chart implies otherwise, this can confuse the viewer.
+In the above examples, the dates in the provided data include year, month, day but no time (e.g. `"2020-01-01"` or `datetime.date(2020, 1, 1)`). Notice when there are a fewer days (e.g. 3 days) along the date axis, the time also appears in the tick label. We see that any data point that was meant to be representative of a day, is assigned to that day at time **00:00:00**.
 
-## Let's Build Up to the Best Solution
+While this default behaviour can be useful, it may not always be desirable. If these data points are meant to be representative of an _entire day_ and _not at a specific time_ during that day, this representation may confuse the viewer. So how do we adapt?
+
+## Customizing Tick Labels on a Date Axis
 
 You may be able to patch together a workaround from Plotly's [time series tutorial](https://plotly.com/python/time-series/), [figure reference for `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/), and/or some more Googling. For this particular case, we've noticed that almost any fix that comes to mind has its shortcomings, and so, it is worth discussing.
 
