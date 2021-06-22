@@ -11,25 +11,7 @@ When you make a chart with dates, the x-axis automatically adapts its tick label
 <p float="center">
   <img src="assets/default_days_3.png" width="49.5%" />
   <img src="assets/default_days_100.png" width="49.5%" /> 
-</p> 
-
-<!-- 
-![](assets/default_days_3.png)
-![](assets/default_days_100.png) 
--->
-
-<!-- 
-3 days | 100 days
-- | - 
-![](assets/default_days_3.png) | ![](assets/default_days_100.png) 
--->
-
-<!-- 
-<p float="center">
-  <img src="assets/default_days_3.png" width="49.5%" />
-  <img src="assets/default_days_100.png" width="49.5%" /> 
-</p> 
--->
+</p>
 
 In the above examples, the dates in the provided data include year, month, day but no time (e.g. `"2020-01-01"` or `datetime.date(2020, 1, 1)`). Notice when there are a fewer days (e.g. 3 days) along the date axis, the time also appears in the tick label. We see that any data point that was meant to be representative of a day, is assigned to that day at time **00:00:00**.
 
@@ -114,17 +96,6 @@ While this little hack does wonders, it is important to realize that since graph
 
 ![](assets/dtick_with_constant_days_3.png)
 ![](assets/dtick_with_constant_days_100.png)
-
-<!--
-
-Solution: convert dates to be categorical data points
-
-Problems:
-- this may not be ideal for chart types intended for continuous data (e.g. line charts)
-- if one-digit month/day markers in the date do not have trailing zeros, the order of the dates could be messy
-- but missing out on properties for dates (e.g. zoom out to monthly/yearly view)
-
--->
 
 ## Conclusion
 
