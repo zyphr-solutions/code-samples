@@ -31,7 +31,7 @@ You can opt to disable zoom along the x-axis via the `fixedrange` property:
 fig.update_xaxes(fixedrange=True)
 ```
 
-This is viable option if the zoom feature is of less importance to you, and if your _starting_ date range is always large enough such that time never appears in the date axis.
+This is a viable option if the zoom feature is of less importance to you, and if your _starting_ date range is always large enough such that time never appears in the date axis.
 
 Of course, this still does not resolve when the starting date range is in fact small. So let us proceed!
 
