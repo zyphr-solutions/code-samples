@@ -1,6 +1,6 @@
 # Plotly Date Axis Formatting
 
-Creating time series graphs with Plotly can be simple and fun! You can choose between different chart types, adjust the date axis range via range sliders, or tweak the formatting further in the code. Nevertheless, you may find yourself stuck while accommodating for your exact preferences.
+Playing with Plotly's time series graphs can be simple and fun! You can choose between different chart types, adjust the date axis range with a slider control, or tweak the formatting further in the code. Nevertheless, when you find yourself stuck accommodating your exact preferences, you can strive for more control.
 
 In this article, we will outline how the default behaviour for date axis ticks labels may be undesirable in some contexts and how to work around it.
 
