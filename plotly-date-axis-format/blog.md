@@ -96,7 +96,7 @@ if num_days < MAX_DAYS_WITH_DTICK_FORMAT:
     fig.update_xaxes(dtick=86400000.0)
 ```
 
-While this little hack does wonders, it is important to realize that since graph widths may vary for different screen sizes, you may need to experiment to find the ideal value for `MAX_DAYS_WITH_DTICK_FORMAT`. If all goes well, we have a clean date axis with no timestamps!
+Although this little hack does wonders, it is important to realize that since graph widths may vary for different screen sizes, you may need to experiment to find the ideal value for `MAX_DAYS_WITH_DTICK_FORMAT`. If all goes well, we have a clean date axis with no timestamps!
 
 <p float="center">
   <img src="assets/dtick_with_constant_days_3.png" width="49.5%" />
@@ -105,9 +105,9 @@ While this little hack does wonders, it is important to realize that since graph
 
 ## Conclusion
 
-Although the latter solution addresses the most shortcomings of the noted default behaviour, some of the prior options are more attractive for their simplicity and still viable for certain contexts. For example, you may never encounter a small date range such that time would make an appearance in the date axis unless you zoom in, in which case, you may simply opt to [disable zoom in the mode bar](#1-disable-zoom-in-mode-bar). On the other hand, you may never encounter a large date range, in which case, you can [change the tick interval to be daily](#3-change-tick-interval) without worrying about an overcrowded x-axis. So feel free to pick the solution that feels most appropriate for you.
+While the latter solution addresses the most shortcomings, some of the prior options are more attractive for their simplicity and are still viable in certain contexts. For example, you can opt to [disable zoom in the mode bar](#1-disable-zoom-in-mode-bar) if time never appears in the date axis unless you zoom in. On the other hand, you can choose to [change the tick interval to be daily](#3-change-tick-interval) if your date axis never gets overcrowded.
 
-Ultimately, I think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. The intention here would be to take any moment the tick interval is less than a day, and convert it back to being a day. However, Plotly currently does not have `dtick` defined as a valid property for `tickformatstops`. 
+Ultimately, we think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. The intention here would be to take any moment the tick interval is less than a day, and convert it back to being a day. However, Plotly currently does not have `dtick` defined as a valid property for `tickformatstops`. 
 
 ```python
 # WARNING: this code snippet will not work!
