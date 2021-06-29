@@ -1,8 +1,6 @@
 # Override the Default Behaviour for Plotly Date Axes
 
-For Plotly time series charts, time appears in the date axis when the date range is small or when you zoom in. 
-
-We discuss how to override this default behaviour in our [blog post](https://medium.com/zyphr-solutions/plotly-date-axis-formatting-dbf349ff7264) and provide sample code working through the mentioned fixes in [`app.py`](app.py).
+For Plotly time series charts, time appears in the date axis when the date range is small or when you zoom in. We discuss how to override this default behaviour in our [blog post](https://medium.com/zyphr-solutions/plotly-date-axis-formatting-dbf349ff7264) and provide sample code working through the mentioned fixes in [`app.py`](app.py).
 
 ## How to run this app locally
 
