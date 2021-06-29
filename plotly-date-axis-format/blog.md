@@ -1,0 +1,123 @@
+# Plotly Date Axis Formatting
+
+Playing with Plotly's time series graphs can be simple and fun! You can choose between different chart types, adjust the date axis range with a slider control, or tweak the formatting further in the code. Nevertheless, when you find yourself stuck accommodating your exact preferences, you can strive for more control.
+
+In this article, we will outline how the default behaviour for date axis ticks labels may be undesirable in some contexts and how to work around it.
+
+## Default for Tick Labels on a Date Axis
+
+When you make a chart with dates, the x-axis automatically adapts its tick labels to fit the spacing of the graph. This also occurs every time you zoom in/out of the graph. We see such adjustments for the charts below:
+
+<p float="center">
+  <img src="assets/default_days_3.png" width="49.5%" />
+  <img src="assets/default_days_100.png" width="49.5%" /> 
+</p>
+
+In the above examples, the dates in the provided data include year, month, day but no time (e.g. `"2020-01-01"` or `datetime.date(2020, 1, 1)`). Notice when there are a fewer days (e.g. 3 days) along the date axis, the time also appears in the tick label. We see that any data point that was meant to be representative of a day, is assigned to that day at time **00:00:00**.
+
+While this default behaviour can be useful, it may not always be desirable. If these data points are meant to be representative of an _entire day_ and _not at a specific time_ during that day, this representation may confuse the viewer. So how do we adapt?
+
+## Customizing Tick Labels on a Date Axis
+
+You may be able to patch together a workaround from Plotly's [time series tutorial](https://plotly.com/python/time-series/), [figure reference for `layout.xaxis`](https://plotly.com/python/reference/layout/xaxis/), and/or some more Googling. For this particular case, we've noticed that almost any fix that comes to mind has its shortcomings, and so, it is worth discussing.
+
+### 1. Disable zoom in mode bar
+
+Your starting date range may never be so small such that time makes an appearance in the date axis. Even so, recall that zooming into the chart also has the same effect.
+
+You can opt to disable zoom along the x-axis via the `fixedrange` property:
+
+```python
+fig.update_xaxes(fixedrange=True)
+```
+
+This is a viable option if the zoom feature is of less importance to you, and if your _starting_ date range is always large enough such that time never appears in the date axis.
+
+Of course, this still does not resolve when the starting date range is in fact small. So let us proceed!
+
+### 2. Change tick label format
+
+We can set the tick label format to show only day, month, and year (and thus no time) via the `tickformat` property:
+
+```python
+fig.update_xaxes(tickformat="%b %d\n%Y")
+```
+
+However, in doing so, we miss out on the default formatting for a date axis that spans between many months or years. 
+
+Therefore, it may be better to only change the format for the zoom level at which time appears in the tick label by default. This can be specified in the `tickformatstops` property as a dictionary, where `value` is the equivalent of `tickformat`, and `dtickrange` focuses on when the tick interval is less than a day (86400000 ms):
+
+```python
+fig.update_xaxes(
+    tickformatstops=[
+        dict(dtickrange=[None, 86400000], value="%b %d\n%Y")
+    ]
+)
+```
+
+Since we only change the tick label and not the tick interval, this fix simply replaces time-specific tick labels with just dates. Unfortunately, this leaves us with repeating dates when the date range is small: 
+
+<p float="center">
+  <img src="assets/tickformatstops_days_3.png" width="49.5%" />
+  <img src="assets/tickformatstops_days_100.png" width="49.5%" /> 
+</p>
+
+### 3. Change tick interval
+
+So why don't we simply change the tick interval to be one day (86400000 ms) via the `dtick` property? 
+
+```python
+fig.update_xaxes(dtick=86400000)
+```
+
+This works well when the date range spans a smaller number of days (e.g. 3 days), but when the date range gets larger (e.g. 100 days), the x-axis can get crowded:
+
+<p float="center">
+  <img src="assets/dtick_days_3.png" width="49.5%" />
+  <img src="assets/dtick_days_100.png" width="49.5%" /> 
+</p>
+
+If you never have too many days along the date axis, this is definitely a viable option! Otherwise, the next solution attempts to resolve this. 
+
+### 4. Change tick interval if date range within a specified number of days
+
+By computing the number of days in the dataframe and acknowledging a maximum number of days to apply the tick interval format, you can determine whether to set `dtick` as follows:
+
+```python
+MAX_DAYS_WITH_DTICK_FORMAT = 10 # you can change this!
+
+# compute number of days in date range of date column
+max_date = pd.to_datetime(df["date"]).max()
+min_date = pd.to_datetime(df["date"]).min()
+num_days = (max_date - min_date).days
+
+# set tick interval if number of days within specified limit
+if num_days < MAX_DAYS_WITH_DTICK_FORMAT:
+    fig.update_xaxes(dtick=86400000.0)
+```
+
+Although this little hack does wonders, it is important to realize that since graph widths may vary for different screen sizes, you may need to experiment to find the ideal value for `MAX_DAYS_WITH_DTICK_FORMAT`. If all goes well, we have a clean date axis with no timestamps!
+
+<p float="center">
+  <img src="assets/dtick_with_constant_days_3.png" width="49.5%" />
+  <img src="assets/dtick_with_constant_days_100.png" width="49.5%" /> 
+</p>
+
+## Conclusion
+
+While the latter solution addresses the most shortcomings, some of the prior options are more attractive for their simplicity and are still viable in certain contexts. For example, you can opt to [disable zoom in the mode bar](#1-disable-zoom-in-mode-bar) if time never appears in the date axis unless you zoom in. On the other hand, you can choose to [change the tick interval to be daily](#3-change-tick-interval) if your date axis never gets overcrowded.
+
+Ultimately, we think it would be ideal to define `dtick=86400000` for `dtickrange=[None, 86400000]` in a `tickformatstops` dictionary as shown below. The intention here would be to take any moment the tick interval is less than a day, and convert it back to being a day. However, Plotly currently does not have `dtick` defined as a valid property for `tickformatstops`. 
+
+```python
+# WARNING: this code snippet will not work!
+# fig.update_xaxes(
+#     tickformatstops=[
+#         dict(dtickrange=[None, 86400000], dtick=86400000)
+#     ]
+# )
+```
+
+It is our hope that Plotly adds this feature one day. In the meantime, our workarounds should be useful! Feel free to experiment with our sample code here: https://github.com/zyphr-solutions/code-samples/tree/main/plotly-date-axis-format.
+
+In addition, there are many ways to further customize your date axes. You can hide weekends and holidays, manually set the date range, allow the viewer to adjust the date range using a slider... the list goes on! Plotly expands on these suggestions in their [time series tutorial](https://plotly.com/python/time-series/).
