@@ -118,8 +118,6 @@ Ultimately, we think it would be ideal to define `dtick=86400000` for `dtickrang
 # )
 ```
 
-It is our hope that Plotly adds this feature one day. In the meantime, we hope these workarounds can be of service!
+It is our hope that Plotly adds this feature one day. In the meantime, our workarounds should be useful! Feel free to experiment with our sample code here: https://github.com/zyphr-solutions/code-samples/tree/main/plotly-date-axis-format.
 
----
-
-You can experiment with our sample code here: https://github.com/zyphr-solutions/code-samples/tree/main/plotly-date-axis-format.
+In addition, there are many ways to further customize your date axes. You can hide weekends and holidays, manually set the date range, allow the viewer to adjust the date range using a slider... the list goes on! Plotly expands on these suggestions in their [time series tutorial](https://plotly.com/python/time-series/).
